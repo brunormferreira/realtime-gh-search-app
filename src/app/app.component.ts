@@ -8,6 +8,7 @@ import {
   map,
   switchMap,
 } from 'rxjs';
+import { IRepositoryItems } from './models/repositories.model';
 import { SearchService } from './services/search.service';
 
 @Component({
@@ -16,11 +17,13 @@ import { SearchService } from './services/search.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  queries$ = new Subject<string>();
-  repositories$!: Observable<any[]>;
+  public title: string = 'Angular Search Engine';
 
-  page: number = 1;
-  paginationEl: any[] = [];
+  public queries$ = new Subject<string>();
+  public repositories$!: Observable<IRepositoryItems[]>;
+
+  public page: number = 1;
+  public paginationElements: IRepositoryItems[] = [];
 
   constructor(private searchService: SearchService) {}
 
@@ -36,13 +39,13 @@ export class AppComponent implements OnInit {
     this.setPagination();
   }
 
-  searchRepos($event: any) {
+  onSearchRepositories($event: any): void {
     this.queries$.next($event.target.value);
   }
 
   setPagination(): void {
-    this.repositories$.subscribe((repositories: any[]) => {
-      this.paginationEl = repositories;
+    this.repositories$.subscribe((repositories: IRepositoryItems[]) => {
+      this.paginationElements = repositories;
     });
   }
 }
