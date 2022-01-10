@@ -1,6 +1,7 @@
 {
   "name": "realtime-gh-search",
   "version": "0.0.0",
+  "author": "Bruno Ramires de M. Ferreira",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
