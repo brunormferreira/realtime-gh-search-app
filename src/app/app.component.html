@@ -1,3 +1,8 @@
+<style>
+  .pagination ::ng-deep .ngx-pagination .current {
+    background: red;
+  }
+</style>
 <main>
   <h1>{{ title }}</h1>
   <input
@@ -32,8 +37,9 @@
     </section>
   </article>
   <pagination-controls
+    class="pagination"
     *ngIf="(repositories$ | async)?.length"
     (pageChange)="page = $event"
   ></pagination-controls>
 </main>
-<ng-progress [color]="redColor" [spinner]="true"></ng-progress>
+<ng-progress id="progressBar" [color]="redColor" [spinner]="true"></ng-progress>
