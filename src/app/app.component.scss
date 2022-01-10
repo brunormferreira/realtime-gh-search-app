@@ -1,0 +1,32 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  article {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+
+    section {
+      width: 350px;
+      height: 360px;
+
+      img {
+        width: 120px;
+        object-fit: cover;
+
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}

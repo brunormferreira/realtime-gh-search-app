@@ -1,19 +1,38 @@
-<label>
-  <span>Repository name:</span>
-
+<main>
+  <h1>{{ title }}</h1>
   <input
     type="search"
     placeholder="Start typing to search..."
-    (keyup)="searchRepos($event)"
+    (keyup)="onSearchRepositories($event)"
+    autofocus
   />
-</label>
 
-<div
-  *ngFor="
-    let repo of paginationEl | paginate: { itemsPerPage: 6, currentPage: page }
-  "
->
-  <h3>{{ repo.name }}</h3>
-  <p>{{ repo.description }}</p>
-</div>
-<pagination-controls (pageChange)="page = $event"></pagination-controls>
+  <article>
+    <section
+      *ngFor="
+        let repo of paginationElements
+          | paginate: { itemsPerPage: 12, currentPage: page }
+      "
+    >
+      <div>
+        <h2>➞ {{ repo.name }}</h2>
+        <a [href]="repo.html_url" target="_blank">
+          <p>{{ repo.description }}</p>
+        </a>
+        <p><b>Stars:</b> {{ repo.stargazers_count }}</p>
+        <p><b>Created At:</b> {{ repo.created_at | date }}</p>
+        <p><b>GitHub User:</b> {{ repo.owner.login }}</p>
+        <a [href]="repo.html_url" target="_blank">
+          <img
+            [src]="repo.owner.avatar_url"
+            alt="{{ repo.owner.login }}'s avatar"
+          />
+        </a>
+      </div>
+    </section>
+  </article>
+  <pagination-controls
+    *ngIf="(repositories$ | async)?.length"
+    (pageChange)="page = $event"
+  ></pagination-controls>
+</main>
