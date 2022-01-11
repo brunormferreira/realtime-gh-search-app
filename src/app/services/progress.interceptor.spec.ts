@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ProgressInterceptor } from './progress.interceptor';
 
-describe('GlobalInterceptor', () => {
+describe('ProgressInterceptor', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       providers: [ProgressInterceptor],
